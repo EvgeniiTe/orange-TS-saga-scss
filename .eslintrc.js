@@ -3,7 +3,12 @@ module.exports = {
     browser: true,
     es2020: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb'],
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended'
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -12,10 +17,29 @@ module.exports = {
     ecmaVersion: 11,
     sourceType: 'module',
   },
-  plugins: ['react'],
-  parser: 'babel-eslint',
+  plugins: [
+    'react',
+    '@typescript-eslint'
+  ],
+  parser: '@typescript-eslint/parser',
   rules: {
-    'linebreak-style': ['error', 'windows'],
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never'
+      }
+    ],
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    // note you must disable the base rule as it can report incorrect errors
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
+    'linebreak-style': ['error', 'unix'],
     'react/jsx-props-no-spreading': 0,
     'comma-dangle': [
       'error',
@@ -30,7 +54,7 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 0,
     'jsx-a11y/no-noninteractive-element-interactions': 0,
     'arrow-body-style': 0,
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     quotes: [
       'error',
       'single',
@@ -43,4 +67,5 @@ module.exports = {
     camelcase: ['error', { ignoreDestructuring: true }],
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
   },
+  settings: { 'import/resolver': { node: { extensions: ['.js', '.jsx', '.ts', '.tsx'] } } }
 };

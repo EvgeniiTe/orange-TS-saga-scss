@@ -13,7 +13,7 @@ export const accListLoaded = (accList) => {
 export const accListError = (error) => {
   return {
     type: 'FETCH_LIST_FAILURE',
-    payload: error,
+    payload: error.toString(),
   };
 };
 
