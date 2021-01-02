@@ -12,24 +12,21 @@ import {
   getRepoInfoAndReadme
 } from './services/service';
 
-const serviceFunctions = {
+export const serviceFunctions = {
   getNthRandomAcc,
   getAccRepos,
   getRepoInfoAndReadme
 };
 
 ReactDOM.render(
-
-  <React>
-    <Provider store={store}>
-      <ErrorBoundary>
-        <ServiceProvider value={serviceFunctions}>
-          <Router>
-            <App />
-          </Router>
-        </ServiceProvider>
-      </ErrorBoundary>
-    </Provider>
-  </React>,
+  <Provider store={store}>
+    <ErrorBoundary>
+      <ServiceProvider value={serviceFunctions}>
+        <Router>
+          <App />
+        </Router>
+      </ServiceProvider>
+    </ErrorBoundary>
+  </Provider>,
   document.getElementById('root')
 );

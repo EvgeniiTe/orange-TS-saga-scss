@@ -8,10 +8,10 @@ export interface AccData {
 export interface AccListState {
     data: AccData[];
     loading: boolean;
-    error: string;
+    error: string | null;
 }
 
-interface AccSelectedData {
+export interface AccSelectedRepo {
     id: number;
     name: string;
     description: string;
@@ -20,20 +20,30 @@ interface AccSelectedData {
 }
 
 export interface AccSelectedState {
-    data: AccSelectedData[];
+    data: AccSelectedRepo[];
     loading: boolean;
-    error: string;
+    error: string | null;
 }
 
-interface RepoSelectedData {
+export interface RepoInfo {
     repoName: string;
     description: string;
     urlRepo: string;
     pushedAt: string;
 }
+export interface RepoSelectedData {
+    repoInfo: RepoInfo;
+    readme: string;
+}
 
 export interface RepoSelectedState {
-    data: RepoSelectedData[];
+    data: RepoSelectedData | null;
     loading: boolean;
-    error: string;
+    error: string | null;
+}
+
+export interface State {
+    accList: AccListState,
+    accSelected: AccSelectedState,
+    repoSelected: RepoSelectedState,
 }

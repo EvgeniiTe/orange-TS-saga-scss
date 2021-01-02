@@ -6,11 +6,10 @@ import { HomePage, AccPage, RepoPage } from '../pages';
 import * as S from './styled';
 
 export const App = () => (
-
   <S.App fluid>
     <S.GlobalStyle />
     <Header />
-    <S.ContentContainer fluid>
+    <S.ContentContainer>
       <Switch>
         <Route path="/" component={HomePage} exact />
         <Route path="/:user" component={AccPage} exact />

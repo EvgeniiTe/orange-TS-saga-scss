@@ -1,12 +1,14 @@
 import axios from 'axios';
+import { AccData, AccSelectedRepo, RepoSelectedData, RepoInfo } from '../reducers/types';
 
 const apiBase = 'https://api.github.com';
 const authorId = 60003920;
 
-const getResource = async (url) => {
+const getResource = async (url: string):
+Promise<any> => {
   const res = await axios.get(`${apiBase}${url}`);
 
-  if (!res.status === 200) {
+  if (!(res.status === 200)) {
     throw new Error(`Could not fetch ${apiBase}${url}}`
                 + `, recieved ${res.status}`);
   }
@@ -14,7 +16,7 @@ const getResource = async (url) => {
   return res.data;
 };
 
-const randId = (min, max) => {
+const randId = (min: number, max: number | 60003920) => {
   const left = Math.ceil(min);
   const right = Math.floor(max);
   return Math.floor(Math.random() * (right - left)) + left;
@@ -30,7 +32,7 @@ const getRandomAcc = async () => {
   return res;
 };
 
-export const getNthRandomAcc = async (n) => {
+export const getNthRandomAcc = async (n: number): Promise<AccData[]> => {
   const list = [];
 
   for (let i = 0; i < n; i += 1) {
@@ -41,14 +43,16 @@ export const getNthRandomAcc = async (n) => {
   return result;
 };
 
-export const getAccRepos = async (username) => {
+export const getAccRepos = async (username: string): Promise<AccSelectedRepo[]> => {
   const repos = await getResource(`/users${username}/repos`);
   return repos;
 };
 
-export const getRepoInfoAndReadme = async (usernameRepo) => {
-  const repoInfo = await getResource(`/repos${usernameRepo}`);
-  const readme = await getResource(`/repos${usernameRepo}/readme`);
+export const getRepoInfoAndReadme = async (usernameRepo: string): Promise<RepoSelectedData> => {
+  const repoInfoAny = await getResource(`/repos${usernameRepo}`);
+  const readmeAny = await getResource(`/repos${usernameRepo}/readme`);
+  const repoInfo: RepoInfo = <RepoInfo>repoInfoAny;
+  const readme: string = <string>readmeAny;
   return {
     repoInfo,
     readme

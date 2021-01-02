@@ -6,7 +6,7 @@ export const ErrorIndicator = ({ error }) => {
     <Alert variant="danger">
       <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
       <p>
-        {error.toString()}
+        {error}
       </p>
     </Alert>
   );
