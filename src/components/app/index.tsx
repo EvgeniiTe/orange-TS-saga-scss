@@ -5,7 +5,7 @@ import { Footer } from '../footer';
 import { HomePage, AccPage, RepoPage } from '../pages';
 import * as S from './styled';
 
-export const App = () => (
+export const App: React.FC = () => (
   <S.App fluid>
     <S.GlobalStyle />
     <Header />

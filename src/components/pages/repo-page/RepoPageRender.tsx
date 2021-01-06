@@ -4,8 +4,17 @@ import Card from 'react-bootstrap/Card';
 import { AccInfoBlock } from '../../acc-info-block';
 import { RepoInfoBlock } from '../../repo-info-block';
 import * as S from '../styled';
+import { RepoInfo } from '../../../reducers/types';
 
-export const RepoPageRender = ({
+interface Props {
+  login?: string;
+  ownerUrl?: string;
+  avatarUrl?: string;
+  readmeFileUrl?: string;
+  repoInfo: RepoInfo;
+}
+
+export const RepoPageRender: React.FC<Props> = ({
   login,
   ownerUrl,
   avatarUrl,

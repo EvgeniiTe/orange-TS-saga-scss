@@ -2,7 +2,13 @@ import React from 'react';
 import Image from 'react-bootstrap/Image';
 import * as S from './styled';
 
-export const AccInfoBlock = ({ login, ownerUrl, avatarUrl }) => {
+interface Props {
+  login?: string;
+  ownerUrl?: string;
+  avatarUrl?: string;
+}
+
+export const AccInfoBlock: React.FC<Props> = ({ login, ownerUrl, avatarUrl }: Props) => {
   return (
     <S.AccInfoBlock xs={1} md={3}>
       <S.StyledColStressFont md={6}>{login}</S.StyledColStressFont>
@@ -11,3 +17,5 @@ export const AccInfoBlock = ({ login, ownerUrl, avatarUrl }) => {
     </S.AccInfoBlock>
   );
 };
+
+AccInfoBlock.defaultProps = { login: 'empty', ownerUrl: 'empty', avatarUrl: 'empty' };

@@ -2,9 +2,21 @@ import React from 'react';
 import Image from 'react-bootstrap/Image';
 import { Col, Button } from 'react-bootstrap';
 import * as S from '../styled';
+import { HandleSelectItem } from '../types';
+import { AccData } from '../../../reducers/types';
 
-export const HomePageRender = ({ list, handleSelectItem }) => {
-  const AccList = ({ data = [], selectItem }) => {
+interface Props {
+  list: AccData[];
+  handleSelectItem: HandleSelectItem;
+}
+
+export const HomePageRender: React.FC<Props> = ({ list, handleSelectItem }) => {
+  interface AccListProps {
+    data: AccData[];
+    selectItem: HandleSelectItem;
+  }
+
+  const AccList: React.FC<AccListProps> = ({ data = [], selectItem }) => {
     const items = data.map(({ id, login, html_url: url, avatar_url: avatarUrl }) => {
       return (
         <S.StyledRow key={id}>

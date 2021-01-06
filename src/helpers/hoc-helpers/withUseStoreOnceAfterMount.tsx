@@ -1,8 +1,15 @@
 import React from 'react';
 import { useStoreOnceAfterMount } from '../hooks';
+import { FuncActionCreator, ServiceFunctions } from '../../actions/types';
 
-export const withUseStoreOnceAfterMount = (storeKey, action) => (Wrapped) => {
-  return (props) => {
+export const withUseStoreOnceAfterMount = (
+  storeKey: string,
+  action: FuncActionCreator
+) => (Wrapped: any) => {
+  interface Props {
+    serviceFunctions: ServiceFunctions
+  }
+  return (props: Props) => {
     const { serviceFunctions } = props;
     const {
       data,

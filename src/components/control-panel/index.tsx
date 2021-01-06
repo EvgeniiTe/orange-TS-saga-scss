@@ -3,7 +3,12 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import * as S from './styled';
 
-export const ControlPanel = ({ onlyHome, ownerLogin }) => {
+interface Props {
+  onlyHome?: boolean;
+  ownerLogin?: string | unknown;
+}
+
+export const ControlPanel: React.FC<Props> = ({ onlyHome, ownerLogin }: Props) => {
   const ownerAccPage = `/${ownerLogin}`;
   if (onlyHome) {
     return (
@@ -19,3 +24,5 @@ export const ControlPanel = ({ onlyHome, ownerLogin }) => {
     </S.ControlPanel>
   );
 };
+
+ControlPanel.defaultProps = { onlyHome: false, ownerLogin: undefined };

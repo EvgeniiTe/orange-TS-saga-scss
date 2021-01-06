@@ -36,10 +36,11 @@ export const accListError = (error: string): AccListActionTypes => {
 };
 
 export const getRandomAccs = (serviceFunctions: ServiceFunctions) => {
-  return (quantity: number) => async (dispatch: AppDispatch) => {
+  return (quantity: number | string) => async (dispatch: AppDispatch) => {
     dispatch(accListRequested());
     try {
-      const data = await serviceFunctions.getNthRandomAcc(quantity);
+      const number: number = <number>quantity;
+      const data = await serviceFunctions.getNthRandomAcc(number);
       dispatch(accListLoaded(data));
     } catch (error) {
       dispatch(accListError(error.toString()));
@@ -67,10 +68,11 @@ export const accError = (error: string): AccActionTypes => {
 };
 
 export const getAccPublicRepos = (serviceFunctions: ServiceFunctions) => {
-  return (username: string) => async (dispatch: AppDispatch) => {
+  return (username: string | number) => async (dispatch: AppDispatch) => {
     dispatch(accRequested());
     try {
-      const data = await serviceFunctions.getAccRepos(username);
+      const string: string = <string>username;
+      const data = await serviceFunctions.getAccRepos(string);
       dispatch(accLoaded(data));
     } catch (error) {
       dispatch(accError(error));
@@ -98,10 +100,11 @@ export const repoError = (error: string): RepoActionTypes => {
 };
 
 export const getRepoInfoAndReadmeUrl = (serviceFunctions: ServiceFunctions) => {
-  return (usernameRepo: string) => async (dispatch: AppDispatch) => {
+  return (usernameRepo: string | number) => async (dispatch: AppDispatch) => {
     dispatch(repoRequested());
     try {
-      const data = await serviceFunctions.getRepoInfoAndReadme(usernameRepo);
+      const string: string = <string>usernameRepo;
+      const data = await serviceFunctions.getRepoInfoAndReadme(string);
       dispatch(repoLoaded(data));
     } catch (error) {
       const errMsg = 'It might be something wrong with this repo, try another one';

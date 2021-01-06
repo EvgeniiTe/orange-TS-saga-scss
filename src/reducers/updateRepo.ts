@@ -4,7 +4,7 @@ import {
   FETCH_REPO_FAILURE,
   Action
 } from '../actions/types';
-import { RepoSelectedState, State } from './types';
+import { RepoSelectedState } from './types';
 
 const initialState: RepoSelectedState = {
   data: null,
@@ -12,12 +12,8 @@ const initialState: RepoSelectedState = {
   error: null,
 };
 
-export const updateRepo = (state: State, action: Action): RepoSelectedState => {
+export const updateRepo = (state: RepoSelectedState, action: Action): RepoSelectedState => {
   if (state === undefined) {
-    return initialState;
-  }
-
-  if (state.repoSelected === undefined) {
     return initialState;
   }
 
@@ -42,6 +38,6 @@ export const updateRepo = (state: State, action: Action): RepoSelectedState => {
       };
 
     default:
-      return state.repoSelected;
+      return state;
   }
 };

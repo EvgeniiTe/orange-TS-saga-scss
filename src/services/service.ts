@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AccData, AccSelectedRepo, RepoSelectedData, RepoInfo } from '../reducers/types';
+import { AccData, AccSelectedRepo, RepoSelectedData, RepoInfo, Readme } from '../reducers/types';
 
 const apiBase = 'https://api.github.com';
 const authorId = 60003920;
@@ -52,7 +52,7 @@ export const getRepoInfoAndReadme = async (usernameRepo: string): Promise<RepoSe
   const repoInfoAny = await getResource(`/repos${usernameRepo}`);
   const readmeAny = await getResource(`/repos${usernameRepo}/readme`);
   const repoInfo: RepoInfo = <RepoInfo>repoInfoAny;
-  const readme: string = <string>readmeAny;
+  const readme: Readme = <Readme>readmeAny;
   return {
     repoInfo,
     readme

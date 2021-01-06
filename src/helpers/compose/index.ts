@@ -1,3 +1,3 @@
-export const compose = (...funcs) => (component) => {
-  return funcs.reduceRight((wrapped, f) => f(wrapped), component);
+export const compose = (...funcs: any) => (component: any) => {
+  return funcs.reduceRight((wrapped: any, f: any) => f(wrapped), component);
 };

@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import { Loader } from '../../loader';
 import { ErrorIndicator } from '../../error-indicator';
 import { ControlPanel } from '../../control-panel';
-
 import { AccPageRender } from './AccPageRender';
+import { MakeActionType } from '../../../actions/types';
+import { AccSelectedState, Owner } from '../../../reducers/types';
 
-export const AccPageContainer = ({
+interface Props extends AccSelectedState, RouteComponentProps {
+  makeAction: MakeActionType;
+}
+
+export const AccPageContainer: React.FC<Props> = ({
   history,
   makeAction: getAccRepos,
   data: reposList,
   loading,
   error
 }) => {
-  const [owner, setOwner] = useState({});
+  const [owner, setOwner] = useState<Owner>({});
 
   useEffect(() => {
     getAccRepos(history.location.pathname);
@@ -32,7 +38,7 @@ export const AccPageContainer = ({
     avatar_url: avatarUrl = undefined
   } = owner;
 
-  const handleSelectItem = (repo) => {
+  const handleSelectItem = (repo: string): void => {
     history.push(`/${login}/${repo}`);
   };
 

@@ -2,7 +2,19 @@ import React from 'react';
 import * as S from './styled';
 import { PushedAt } from '../pages/acc-page/pushed-at';
 
-export const RepoInfoBlock = ({ repoName, description, urlRepo, pushedAt }) => {
+interface Props {
+  repoName?: string;
+  description?: string;
+  urlRepo?: string;
+  pushedAt?: string;
+}
+
+export const RepoInfoBlock: React.FC<Props> = ({
+  repoName,
+  description,
+  urlRepo,
+  pushedAt
+}: Props) => {
   return (
     <S.RepoInfoBlock xs={1} md={4}>
       <S.StyledColStressFont>{repoName}</S.StyledColStressFont>
@@ -13,4 +25,11 @@ export const RepoInfoBlock = ({ repoName, description, urlRepo, pushedAt }) => {
       </S.RepoCol>
     </S.RepoInfoBlock>
   );
+};
+
+RepoInfoBlock.defaultProps = {
+  repoName: 'undefined',
+  description: 'undefined',
+  urlRepo: 'undefined',
+  pushedAt: 'undefined'
 };

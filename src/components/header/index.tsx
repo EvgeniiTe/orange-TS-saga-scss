@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'react-bootstrap/Image';
 import * as S from './styled';
 
-export const Header = () => (
+export const Header: React.FC = () => (
   <>
     <S.DecorativeEl />
     <S.Wellcome>HI! Glad to see YOU!</S.Wellcome>

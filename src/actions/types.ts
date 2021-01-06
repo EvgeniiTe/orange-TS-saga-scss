@@ -1,6 +1,7 @@
 import { AccData, AccSelectedRepo, RepoSelectedData } from '../reducers/types';
 import { store } from '../store';
-import { serviceFunctions } from '../index';
+// import { serviceFunctions } from '../index';
+import { getRandomAccs, getAccPublicRepos, getRepoInfoAndReadmeUrl } from './index';
 
 export const FETCH_LIST_REQUEST = 'FETCH_LIST_REQUEST';
 export const FETCH_LIST_SUCCESS = 'FETCH_LIST_SUCCESS';
@@ -22,6 +23,7 @@ export interface ServiceFunctions {
     getRepoInfoAndReadme: getRepoInfoAndReadmeType,
 }
 
+// export type ServiceFunctions = typeof serviceFunctions;
 interface AccListRequestedAction {
     type: typeof FETCH_LIST_REQUEST;
 }
@@ -71,3 +73,15 @@ interface RepoErrorAction {
 export type RepoActionTypes = RepoRequestedAction | RepoLoadedAction | RepoErrorAction;
 
 export type Action = AccListActionTypes | AccActionTypes | RepoActionTypes
+
+type LastForFuncActionCreator = (param: number | string) =>
+(dispatch: AppDispatch) => Promise<void>;
+
+type getRandomAccsType = (service: ServiceFunctions) => LastForFuncActionCreator;
+type getAccPublicReposType = (service: ServiceFunctions) => LastForFuncActionCreator;
+type getRepoInfoAndReadmeUrlType = (service: ServiceFunctions) => LastForFuncActionCreator;
+
+export type FuncActionCreator = getRandomAccsType |
+getAccPublicReposType | getRepoInfoAndReadmeUrlType;
+
+export type MakeActionType = (param: number | string) => AppDispatch;

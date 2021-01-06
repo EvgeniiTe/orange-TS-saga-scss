@@ -11,22 +11,25 @@ import {
   getAccRepos,
   getRepoInfoAndReadme
 } from './services/service';
+import { ServiceFunctions } from './actions/types';
 
-export const serviceFunctions = {
+export const serviceFunctions: ServiceFunctions = {
   getNthRandomAcc,
   getAccRepos,
   getRepoInfoAndReadme
 };
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ErrorBoundary>
-      <ServiceProvider value={serviceFunctions}>
-        <Router>
-          <App />
-        </Router>
-      </ServiceProvider>
-    </ErrorBoundary>
-  </Provider>,
+  <React.StrictMode>
+    <Provider store={store}>
+      <ErrorBoundary>
+        <ServiceProvider value={serviceFunctions}>
+          <Router>
+            <App />
+          </Router>
+        </ServiceProvider>
+      </ErrorBoundary>
+    </Provider>
+  </React.StrictMode>,
   document.getElementById('root')
 );

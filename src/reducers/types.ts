@@ -1,22 +1,29 @@
+/* eslint-disable camelcase */
 export interface AccData {
     id: number;
     login: string;
-    url: string;
-    avatarUrl: string;
+    html_url: string;
+    avatar_url: string;
 }
 
 export interface AccListState {
-    data: AccData[];
+    data: AccData[] | [];
     loading: boolean;
     error: string | null;
 }
 
+export interface Owner {
+    login?: string;
+    html_url?: string;
+    avatar_url?: string;
+}
 export interface AccSelectedRepo {
     id: number;
     name: string;
     description: string;
-    url: string;
-    pushedAt: string;
+    html_url: string;
+    pushed_at: string;
+    owner: Owner;
 }
 
 export interface AccSelectedState {
@@ -26,14 +33,19 @@ export interface AccSelectedState {
 }
 
 export interface RepoInfo {
-    repoName: string;
-    description: string;
-    urlRepo: string;
-    pushedAt: string;
+    name?: string;
+    description?: string;
+    html_url?: string;
+    pushed_at?: string;
+    owner: Owner;
+}
+
+export interface Readme {
+    download_url: string;
 }
 export interface RepoSelectedData {
     repoInfo: RepoInfo;
-    readme: string;
+    readme: Readme;
 }
 
 export interface RepoSelectedState {

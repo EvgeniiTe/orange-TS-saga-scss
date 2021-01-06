@@ -4,7 +4,7 @@ import {
   FETCH_LIST_FAILURE,
   Action
 } from '../actions/types';
-import { AccListState, State } from './types';
+import { AccListState } from './types';
 
 const initialState: AccListState = {
   data: [],
@@ -12,7 +12,7 @@ const initialState: AccListState = {
   error: null,
 };
 
-export const updateAccList = (state: State, action: Action): AccListState => {
+export const updateAccList = (state: AccListState, action: Action): AccListState => {
   if (state === undefined) {
     return initialState;
   }
@@ -34,6 +34,6 @@ export const updateAccList = (state: State, action: Action): AccListState => {
       };
 
     default:
-      return state.accList;
+      return state;
   }
 };

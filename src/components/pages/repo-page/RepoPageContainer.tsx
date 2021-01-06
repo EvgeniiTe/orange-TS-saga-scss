@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import { Loader } from '../../loader';
 import { ErrorIndicator } from '../../error-indicator';
 import { ControlPanel } from '../../control-panel';
-
+import { MakeActionType } from '../../../actions/types';
+import { RepoSelectedState, Owner, RepoInfo } from '../../../reducers/types';
 import { RepoPageRender } from './RepoPageRender';
 
-export const RepoPageContainer = ({
+interface Props extends RepoSelectedState, RouteComponentProps {
+  makeAction: MakeActionType;
+}
+
+export const RepoPageContainer: React.FC<Props> = ({
   history,
   makeAction: getRepo,
   data: repoInfo,
   loading,
   error
 }) => {
-  const [owner, setOwner] = useState({});
-  const [readmeFileUrl, setReadmeFileUrl] = useState({});
+  const [owner, setOwner] = useState<Owner>({});
+  const [repoInfoExceptReadme, setRepoInfoExceptReadme] = useState<RepoInfo>({ owner: {} });
+  const [readmeFileUrl, setReadmeFileUrl] = useState<string>('');
 
   useEffect(() => {
     getRepo(history.location.pathname);
@@ -26,6 +33,7 @@ export const RepoPageContainer = ({
       setOwner(ownerData);
       const { download_url: urlForReadme } = repoInfo.readme;
       setReadmeFileUrl(urlForReadme);
+      setRepoInfoExceptReadme(repoInfo.repoInfo);
     } else {
       const urlStr = history.location.pathname;
       const regex = /\w+/i;
@@ -65,7 +73,7 @@ export const RepoPageContainer = ({
         ownerUrl={ownerUrl}
         avatarUrl={avatarUrl}
         readmeFileUrl={readmeFileUrl}
-        repoInfo={repoInfo.repoInfo}
+        repoInfo={repoInfoExceptReadme}
       />
       <ControlPanel ownerLogin={login} />
     </>

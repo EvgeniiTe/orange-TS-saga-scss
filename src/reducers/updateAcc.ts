@@ -4,7 +4,7 @@ import {
   FETCH_ACC_FAILURE,
   Action
 } from '../actions/types';
-import { AccSelectedState, State } from './types';
+import { AccSelectedState } from './types';
 
 const initialState: AccSelectedState = {
   data: [],
@@ -12,12 +12,8 @@ const initialState: AccSelectedState = {
   error: null,
 };
 
-export const updateAcc = (state: State, action: Action): AccSelectedState => {
+export const updateAcc = (state: AccSelectedState, action: Action): AccSelectedState => {
   if (state === undefined) {
-    return initialState;
-  }
-
-  if (state.accSelected === undefined) {
     return initialState;
   }
 

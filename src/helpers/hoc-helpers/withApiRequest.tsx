@@ -2,8 +2,8 @@ import React from 'react';
 
 import { ServiceConsumer } from '../service-context';
 
-export const withApiRequest = () => (Wrapped) => {
-  return (props) => {
+export const withApiRequest = () => (Wrapped: any) => {
+  return (props: any) => {
     return (
       <ServiceConsumer>
         {(serviceFunctions) => {

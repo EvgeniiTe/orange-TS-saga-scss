@@ -4,15 +4,30 @@ import { ControlPanel } from '../../control-panel';
 import * as S from '../styled';
 import { AccInfoBlock } from '../../acc-info-block';
 import { PushedAt } from './pushed-at';
+import { AccSelectedRepo } from '../../../reducers/types';
+import { HandleSelectItem } from '../types';
 
-export const AccPageRender = ({
+interface Props {
+  list: AccSelectedRepo[];
+  handleSelectItem: HandleSelectItem;
+  login?: string;
+  ownerUrl?: string;
+  avatarUrl?: string;
+}
+
+export const AccPageRender: React.FC<Props> = ({
   list,
   handleSelectItem,
   login,
   ownerUrl,
   avatarUrl,
 }) => {
-  const ReposList = ({ data = [], selectRepo }) => {
+  interface ReposListProps {
+    data: AccSelectedRepo[];
+    selectRepo: HandleSelectItem;
+  }
+
+  const ReposList: React.FC<ReposListProps> = ({ data = [], selectRepo }) => {
     const items = data.map(({ id, name, description, html_url: url, pushed_at: pushedAt }) => {
       return (
         <S.StyledRow key={id} onClick={() => selectRepo(name)}>
