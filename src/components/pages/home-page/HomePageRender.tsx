@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'react-bootstrap/Image';
-import { Col, Button } from 'react-bootstrap';
-import * as S from '../styled';
+import { Row, Col, Button, Container } from 'react-bootstrap';
+import '../_style.scss';
 import { HandleSelectItem } from '../types';
 import { AccData } from '../../../reducers/types';
 
@@ -19,12 +19,12 @@ export const HomePageRender: React.FC<Props> = ({ list, handleSelectItem }) => {
   const AccList: React.FC<AccListProps> = ({ data = [], selectItem }) => {
     const items = data.map(({ id, login, html_url: url, avatar_url: avatarUrl }) => {
       return (
-        <S.StyledRow key={id}>
-          <S.StyledColStressFont xs={12} md={2}>{login}</S.StyledColStressFont>
-          <S.StyledCol xs={12} md={6}><a href={url}>Link to acc on Github</a></S.StyledCol>
-          <S.StyledCol xs={12} md={2} style={{ minHeight: '5rem' }}><Image src={avatarUrl} roundedCircle style={{ width: '5rem' }} /></S.StyledCol>
-          <S.StyledCol xs={12} md={2}><Button variant="primary" onClick={() => selectItem(login)}>MORE INFO</Button></S.StyledCol>
-        </S.StyledRow>
+        <Row key={id} className="styledRow">
+          <Col className="styledColStressFont" xs={12} md={2}>{login}</Col>
+          <Col className="styledCol" xs={12} md={6}><a href={url}>Link to acc on Github</a></Col>
+          <Col className="styledCol" xs={12} md={2} style={{ minHeight: '5rem' }}><Image src={avatarUrl} roundedCircle style={{ width: '5rem' }} /></Col>
+          <Col className="styledCol" xs={12} md={2}><Button variant="primary" onClick={() => selectItem(login)}>MORE INFO</Button></Col>
+        </Row>
       );
     });
 
@@ -36,13 +36,13 @@ export const HomePageRender: React.FC<Props> = ({ list, handleSelectItem }) => {
   };
 
   return (
-    <S.MainContainer>
-      <S.StyledHeadRow>
+    <Container className="mainContainer">
+      <Row className="styledHeadRow">
         <Col md={2}>ЛОГИН</Col>
         <Col md={6}>ССЫЛКА НА АККАУНТ</Col>
         <Col md={2}>АВАТАР</Col>
-      </S.StyledHeadRow>
+      </Row>
       <AccList data={list} selectItem={handleSelectItem} />
-    </S.MainContainer>
+    </Container>
   );
 };

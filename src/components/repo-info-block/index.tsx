@@ -1,5 +1,6 @@
 import React from 'react';
-import * as S from './styled';
+import './_style.scss';
+import { Row, Col } from 'react-bootstrap';
 import { PushedAt } from '../pages/acc-page/pushed-at';
 
 interface Props {
@@ -16,14 +17,14 @@ export const RepoInfoBlock: React.FC<Props> = ({
   pushedAt
 }: Props) => {
   return (
-    <S.RepoInfoBlock xs={1} md={4}>
-      <S.StyledColStressFont>{repoName}</S.StyledColStressFont>
-      <S.RepoCol>{description}</S.RepoCol>
-      <S.RepoCol><a href={urlRepo}>Link to repo on Github</a></S.RepoCol>
-      <S.RepoCol>
+    <Row className="repoInfoBlock" xs={1} md={4}>
+      <Col className="styledColStressFont">{repoName}</Col>
+      <Col className="repoCol">{description}</Col>
+      <Col className="repoCol"><a href={urlRepo}>Link to repo on Github</a></Col>
+      <Col className="repoCol">
         <PushedAt pushedAt={pushedAt} />
-      </S.RepoCol>
-    </S.RepoInfoBlock>
+      </Col>
+    </Row>
   );
 };
 

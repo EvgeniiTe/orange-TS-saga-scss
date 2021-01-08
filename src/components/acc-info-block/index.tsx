@@ -1,6 +1,6 @@
 import React from 'react';
-import Image from 'react-bootstrap/Image';
-import * as S from './styled';
+import { Image, Row, Col } from 'react-bootstrap';
+import './_style.scss';
 
 interface Props {
   login?: string;
@@ -10,11 +10,11 @@ interface Props {
 
 export const AccInfoBlock: React.FC<Props> = ({ login, ownerUrl, avatarUrl }: Props) => {
   return (
-    <S.AccInfoBlock xs={1} md={3}>
-      <S.StyledColStressFont md={6}>{login}</S.StyledColStressFont>
-      <S.AccCol md={3}><a href={ownerUrl}>Link to acc on Github</a></S.AccCol>
-      <S.AccCol md={3}><Image src={avatarUrl} roundedCircle style={{ width: '5rem' }} /></S.AccCol>
-    </S.AccInfoBlock>
+    <Row className="accInfoBlock" xs={1} md={3}>
+      <Col className="styledColStressFont" md={6}>{login}</Col>
+      <Col className="accCol" md={3}><a href={ownerUrl}>Link to acc on Github</a></Col>
+      <Col className="accCol" md={3}><Image src={avatarUrl} roundedCircle style={{ width: '5rem' }} /></Col>
+    </Row>
   );
 };
 

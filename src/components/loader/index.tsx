@@ -1,11 +1,11 @@
 import React from 'react';
 import { Spinner } from 'react-bootstrap';
-import * as S from './styled';
+import './_style.scss';
 
 export const Loader: React.FC = () => {
   return (
-    <S.Center>
+    <section className="loader">
       <Spinner animation="border" role="status" variant="info" />
-    </S.Center>
+    </section>
   );
 };

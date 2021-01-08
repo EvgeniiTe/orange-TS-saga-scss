@@ -1,0 +1,26 @@
+@import '../../extendThis';
+@import '../../vars';
+
+.footer {
+  background-color: $backgroundStressColor;
+  margin: 0;
+  flex-shrink: '0'
+}
+
+.footerContainer {
+  @extend %headerFooterContainer;
+  flex-direction: column;
+  min-height: 10rem;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  align-items: center;
+}
+
+.copyright {
+  margin: auto;
+}
+
+.companyNameFooter {
+  @extend %companyNamePrimary;
+  align-self: center;
+}

@@ -1,0 +1,15 @@
+@import '../../extendThis';
+
+.styledColStressFont {
+  @extend %styledColStressFontGeneral;
+}
+
+.repoInfoBlock {
+  @extend %parentInfoRow;
+  min-height: 5rem;
+}
+
+.repoCol {
+  @extend %styledColGeneral;
+  text-align: center;
+}

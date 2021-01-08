@@ -1,0 +1,73 @@
+@import '../../extendThis';
+@import '../../vars';
+
+.header {
+  background-color: #000;
+  margin: 0;
+}
+
+$decorBorderSize: 100px;
+
+.decorativeEl {
+  background-color: #000;
+  margin: 0;
+  width: 0;
+  height: 0;
+  border-top: $decorBorderSize solid $backgroundStressColor;
+  border-left: $decorBorderSize solid $backgroundStressColor;
+  border-right: 600px solid transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  /* sm-размер (<=768px) */
+  @media (max-width: 767px) { 
+    border-right: 250px solid transparent;
+  }
+}
+
+.wellcome {
+  content: "HI! Glad to see YOU!";
+  position: absolute;
+  color: #fff;
+  font-weight: bold;
+  font-size: 2rem;
+  top: 1rem;
+  left: 1rem;
+  
+  
+  /* sm-размер (<=768px) */
+  @media (max-width: 767px) { 
+    font-size: 1rem;
+  }
+}
+
+.headerContainer {
+  @extend %headerFooterContainer;
+
+  /* sm-размер (<=768px) */
+  @media (max-width: 767px) { 
+    padding-top: $decorBorderSize;
+  }
+}
+
+.headerRow {
+  min-height: 13rem;
+  padding-bottom: 3rem;
+  width: 100%;
+  margin: auto;
+}
+
+.companyName {
+  @extend %companyNamePrimary;
+}
+
+.companyMotto {
+  align-self: flex-end; 
+  text-align: center;
+}
+
+.companyLogo {
+  align-self: center;
+  text-align: center;
+}

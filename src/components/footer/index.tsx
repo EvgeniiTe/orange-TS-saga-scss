@@ -1,15 +1,15 @@
 import React from 'react';
-import * as S from './styled';
+import './_style.scss';
 
 export const Footer: React.FC = () => (
-  <S.Footer>
-    <S.FooterContainer>
-      <S.CompanyNameFooter>
+  <footer className="footer">
+    <div className="footerContainer">
+      <div className="companyNameFooter">
         AwesomeCompanyName
-      </S.CompanyNameFooter>
-      <S.Copyright>
+      </div>
+      <div className="copyright">
         <p>Здесь мог бы быть Copyright</p>
-      </S.Copyright>
-    </S.FooterContainer>
-  </S.Footer>
+      </div>
+    </div>
+  </footer>
 );

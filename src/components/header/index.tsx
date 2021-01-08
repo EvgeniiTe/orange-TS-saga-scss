@@ -1,25 +1,25 @@
 import React from 'react';
-import Image from 'react-bootstrap/Image';
-import * as S from './styled';
+import { Row, Col, Image } from 'react-bootstrap';
+import './_style.scss';
 
 export const Header: React.FC = () => (
   <>
-    <S.DecorativeEl />
-    <S.Wellcome>HI! Glad to see YOU!</S.Wellcome>
-    <S.Header>
-      <S.HeaderContainer>
-        <S.HeaderRow xs={1} md={3}>
-          <S.CompanyName>
+    <div className="decorativeEl" />
+    <div className="wellcome">HI! Glad to see YOU!</div>
+    <header className="header">
+      <div className="headerContainer">
+        <Row className="headerRow" xs={1} md={3}>
+          <Col className="companyName">
             AwesomeCompanyName
-          </S.CompanyName>
-          <S.CompanyMotto>
+          </Col>
+          <Col className="companyMotto">
             &#34;AwesomeCompanyMoto&#34;
-          </S.CompanyMotto>
-          <S.CompanyLogo>
+          </Col>
+          <Col className="companyLogo">
             <Image src="./@.svg" style={{ width: '8rem' }} />
-          </S.CompanyLogo>
-        </S.HeaderRow>
-      </S.HeaderContainer>
-    </S.Header>
+          </Col>
+        </Row>
+      </div>
+    </header>
   </>
 );

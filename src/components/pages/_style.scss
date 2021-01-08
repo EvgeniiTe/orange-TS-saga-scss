@@ -1,0 +1,36 @@
+@import '../../vars';
+@import '../../extendThis';
+
+
+.mainContainer {
+  max-width: 1366px;
+  padding: 1rem 0;
+
+  /* sm-размер (<=768px) */
+  @media (max-width: 767px) { 
+      padding: 1rem 2rem;
+  }
+}
+
+.styledRow {
+  @extend %styledRowGeneral;
+}
+
+.styledHeadRow {
+  padding-bottom: 2rem;
+  padding: 1rem 0;
+  
+  /* sm-размер (<=768px) */
+  @media (max-width: 767px) { 
+     display: none;
+  }
+}
+
+.styledCol {
+  @extend %styledColGeneral;
+}
+
+.styledColStressFont {
+  @extend %styledColStressFontGeneral;
+}
+

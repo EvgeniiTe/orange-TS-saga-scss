@@ -1,9 +1,8 @@
 import React from 'react';
-import Row from 'react-bootstrap/Row';
-import Card from 'react-bootstrap/Card';
+import { Row, Card, Container } from 'react-bootstrap';
+import '../_style.scss';
 import { AccInfoBlock } from '../../acc-info-block';
 import { RepoInfoBlock } from '../../repo-info-block';
-import * as S from '../styled';
 import { RepoInfo } from '../../../reducers/types';
 
 interface Props {
@@ -23,7 +22,7 @@ export const RepoPageRender: React.FC<Props> = ({
 }) => {
   const { name: repoName, description, html_url: urlRepo, pushed_at: pushedAt } = repoInfo;
   return (
-    <S.MainContainer>
+    <Container className="mainContainer">
       <AccInfoBlock login={login} ownerUrl={ownerUrl} avatarUrl={avatarUrl} />
       <RepoInfoBlock
         repoName={repoName}
@@ -41,6 +40,6 @@ export const RepoPageRender: React.FC<Props> = ({
           </Card.Body>
         </Card>
       </Row>
-    </S.MainContainer>
+    </Container>
   );
 };

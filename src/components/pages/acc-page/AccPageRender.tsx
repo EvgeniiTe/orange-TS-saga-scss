@@ -1,7 +1,7 @@
 import React from 'react';
-import Col from 'react-bootstrap/Col';
+import { Row, Col, Container } from 'react-bootstrap';
 import { ControlPanel } from '../../control-panel';
-import * as S from '../styled';
+import '../_style.scss';
 import { AccInfoBlock } from '../../acc-info-block';
 import { PushedAt } from './pushed-at';
 import { AccSelectedRepo } from '../../../reducers/types';
@@ -30,12 +30,12 @@ export const AccPageRender: React.FC<Props> = ({
   const ReposList: React.FC<ReposListProps> = ({ data = [], selectRepo }) => {
     const items = data.map(({ id, name, description, html_url: url, pushed_at: pushedAt }) => {
       return (
-        <S.StyledRow key={id} onClick={() => selectRepo(name)}>
-          <S.StyledColStressFont xs={12} md={3}>{name}</S.StyledColStressFont>
-          <S.StyledCol xs={12} md={3}>{description}</S.StyledCol>
-          <S.StyledCol xs={12} md={3}><a href={url}>Link to repo on Github</a></S.StyledCol>
-          <S.StyledCol xs={12} md={3}><PushedAt pushedAt={pushedAt} /></S.StyledCol>
-        </S.StyledRow>
+        <Row className="styledRow" key={id} onClick={() => selectRepo(name)}>
+          <Col className="styledColStressFont" xs={12} md={3}>{name}</Col>
+          <Col className="styledCol" xs={12} md={3}>{description}</Col>
+          <Col className="styledCol" xs={12} md={3}><a href={url}>Link to repo on Github</a></Col>
+          <Col className="styledCol" xs={12} md={3}><PushedAt pushedAt={pushedAt} /></Col>
+        </Row>
       );
     });
 
@@ -47,16 +47,16 @@ export const AccPageRender: React.FC<Props> = ({
   };
 
   return (
-    <S.MainContainer>
+    <Container className="mainContainer">
       <AccInfoBlock login={login} ownerUrl={ownerUrl} avatarUrl={avatarUrl} />
-      <S.StyledHeadRow>
+      <Row className="styledHeadRow">
         <Col>НАЗВАНИЕ</Col>
         <Col>ОПИСАНИЕ</Col>
         <Col>ССЫЛКА</Col>
         <Col>ДАТА ИЗМЕНЕНИЯ</Col>
-      </S.StyledHeadRow>
+      </Row>
       <ReposList data={list} selectRepo={handleSelectItem} />
       <ControlPanel onlyHome />
-    </S.MainContainer>
+    </Container>
   );
 };

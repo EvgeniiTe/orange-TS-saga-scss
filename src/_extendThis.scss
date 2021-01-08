@@ -1,0 +1,62 @@
+@import './vars';
+
+
+%headerFooterContainer {
+  max-width: 1920px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  color: $fontLightColor;
+  margin: auto;
+}
+
+%parentInfoRow {
+  padding: 1rem 0;
+  border: 3px solid green;
+  margin-bottom: 1rem
+}
+
+%styledColGeneral {
+  margin: auto;
+
+  /* sm-размер (<=768px) */
+  @media (max-width: 767px) { 
+    text-align: center;
+  }
+}
+
+
+@keyframes shadowAppearance {
+  from {
+    box-shadow: 0 1px 1px grey;
+  }
+  to {
+    box-shadow: $shadowForRow;
+  }
+}
+
+%styledRowGeneral {
+  border-bottom: 1px solid grey;
+  padding: 1rem 0;
+  min-height: 7rem;
+  
+  &:hover {
+    animation-name: shadowAppearance;
+    animation-duration: 0.8s;
+    animation-timing-function: ease;
+    box-shadow: $shadowForRow;
+  }
+}
+
+%styledColStressFontGeneral {
+  @extend %styledColGeneral;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+%companyNamePrimary {
+  align-self: flex-end;
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: center;
+}
