@@ -41,19 +41,6 @@ export const actionForAccListSaga = (api: ServiceFunctions, param: number | stri
   };
 };
 
-// export const getRandomAccs = (serviceFunctions: ServiceFunctions) => {
-//   return (quantity: number | string) => async (dispatch: AppDispatch) => {
-//     dispatch(accListRequested());
-//     try {
-//       const number: number = <number>quantity;
-//       const data = await serviceFunctions.getNthRandomAcc(number);
-//       dispatch(accListLoaded(data));
-//     } catch (error) {
-//       dispatch(accListError(error.toString()));
-//     }
-//   };
-// };
-
 // accSelected
 export const accRequested = (): AccActionTypes => {
   return { type: FETCH_ACC_REQUEST };
@@ -80,19 +67,6 @@ export const actionForAccSelectedSaga = (api: ServiceFunctions, param: number | 
   };
 };
 
-// export const getAccPublicRepos = (serviceFunctions: ServiceFunctions) => {
-//   return (username: string | number) => async (dispatch: AppDispatch) => {
-//     dispatch(accRequested());
-//     try {
-//       const string: string = <string>username;
-//       const data = await serviceFunctions.getAccRepos(string);
-//       dispatch(accLoaded(data));
-//     } catch (error) {
-//       dispatch(accError(error));
-//     }
-//   };
-// };
-
 // repoSelected
 export const repoRequested = (): RepoActionTypes => {
   return { type: FETCH_REPO_REQUEST };
@@ -118,17 +92,3 @@ export const actionForRepoSelectedSaga = (api: ServiceFunctions, param: number |
     payload: { api, param },
   };
 };
-
-// export const getRepoInfoAndReadmeUrl = (serviceFunctions: ServiceFunctions) => {
-//   return (usernameRepo: string | number) => async (dispatch: AppDispatch) => {
-//     dispatch(repoRequested());
-//     try {
-//       const string: string = <string>usernameRepo;
-//       const data = await serviceFunctions.getRepoInfoAndReadme(string);
-//       dispatch(repoLoaded(data));
-//     } catch (error) {
-//       const errMsg = 'It might be something wrong with this repo, try another one';
-//       dispatch(repoError(errMsg));
-//     }
-//   };
-// };

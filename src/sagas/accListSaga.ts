@@ -2,7 +2,6 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import { accListRequested, accListLoaded, accListError } from '../actions/index';
 import { ActionForSaga } from '../actions/types';
 
-//
 function* getRandomAccs(action: ActionForSaga) {
   const { api, param } = action.payload;
   try {
