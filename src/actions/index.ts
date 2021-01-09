@@ -11,7 +11,6 @@ import {
   FETCH_REPO_SUCCESS,
   FETCH_REPO_FAILURE,
   RepoActionTypes,
-  AppDispatch,
   ServiceFunctions
 } from './types';
 import { AccData, AccSelectedRepo, RepoSelectedData } from '../reducers/types';
@@ -35,18 +34,25 @@ export const accListError = (error: string): AccListActionTypes => {
   };
 };
 
-export const getRandomAccs = (serviceFunctions: ServiceFunctions) => {
-  return (quantity: number | string) => async (dispatch: AppDispatch) => {
-    dispatch(accListRequested());
-    try {
-      const number: number = <number>quantity;
-      const data = await serviceFunctions.getNthRandomAcc(number);
-      dispatch(accListLoaded(data));
-    } catch (error) {
-      dispatch(accListError(error.toString()));
-    }
+export const actionForAccListSaga = (api: ServiceFunctions, param: number | string) => {
+  return {
+    type: 'FETCH_ACCS_LIST',
+    payload: { api, param },
   };
 };
+
+// export const getRandomAccs = (serviceFunctions: ServiceFunctions) => {
+//   return (quantity: number | string) => async (dispatch: AppDispatch) => {
+//     dispatch(accListRequested());
+//     try {
+//       const number: number = <number>quantity;
+//       const data = await serviceFunctions.getNthRandomAcc(number);
+//       dispatch(accListLoaded(data));
+//     } catch (error) {
+//       dispatch(accListError(error.toString()));
+//     }
+//   };
+// };
 
 // accSelected
 export const accRequested = (): AccActionTypes => {
@@ -67,18 +73,25 @@ export const accError = (error: string): AccActionTypes => {
   };
 };
 
-export const getAccPublicRepos = (serviceFunctions: ServiceFunctions) => {
-  return (username: string | number) => async (dispatch: AppDispatch) => {
-    dispatch(accRequested());
-    try {
-      const string: string = <string>username;
-      const data = await serviceFunctions.getAccRepos(string);
-      dispatch(accLoaded(data));
-    } catch (error) {
-      dispatch(accError(error));
-    }
+export const actionForAccSelectedSaga = (api: ServiceFunctions, param: number | string) => {
+  return {
+    type: 'FETCH_ACC_SELECTED',
+    payload: { api, param },
   };
 };
+
+// export const getAccPublicRepos = (serviceFunctions: ServiceFunctions) => {
+//   return (username: string | number) => async (dispatch: AppDispatch) => {
+//     dispatch(accRequested());
+//     try {
+//       const string: string = <string>username;
+//       const data = await serviceFunctions.getAccRepos(string);
+//       dispatch(accLoaded(data));
+//     } catch (error) {
+//       dispatch(accError(error));
+//     }
+//   };
+// };
 
 // repoSelected
 export const repoRequested = (): RepoActionTypes => {
@@ -99,16 +112,23 @@ export const repoError = (error: string): RepoActionTypes => {
   };
 };
 
-export const getRepoInfoAndReadmeUrl = (serviceFunctions: ServiceFunctions) => {
-  return (usernameRepo: string | number) => async (dispatch: AppDispatch) => {
-    dispatch(repoRequested());
-    try {
-      const string: string = <string>usernameRepo;
-      const data = await serviceFunctions.getRepoInfoAndReadme(string);
-      dispatch(repoLoaded(data));
-    } catch (error) {
-      const errMsg = 'It might be something wrong with this repo, try another one';
-      dispatch(repoError(errMsg));
-    }
+export const actionForRepoSelectedSaga = (api: ServiceFunctions, param: number | string) => {
+  return {
+    type: 'FETCH_REPO_SELECTED',
+    payload: { api, param },
   };
 };
+
+// export const getRepoInfoAndReadmeUrl = (serviceFunctions: ServiceFunctions) => {
+//   return (usernameRepo: string | number) => async (dispatch: AppDispatch) => {
+//     dispatch(repoRequested());
+//     try {
+//       const string: string = <string>usernameRepo;
+//       const data = await serviceFunctions.getRepoInfoAndReadme(string);
+//       dispatch(repoLoaded(data));
+//     } catch (error) {
+//       const errMsg = 'It might be something wrong with this repo, try another one';
+//       dispatch(repoError(errMsg));
+//     }
+//   };
+// };

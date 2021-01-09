@@ -1,12 +1,11 @@
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { ServiceFunctions, FuncActionCreator } from '../../actions/types';
+import { ServiceFunctions, FuncActionForSaga } from '../../actions/types';
 import { RootState } from '../../reducers/index';
-// import { State } from '../../reducers/types';
 
 export const useStoreOnceAfterMount = (
   service: ServiceFunctions,
   storeKey: string,
-  action: FuncActionCreator
+  action: FuncActionForSaga
 ) => {
   const key = storeKey as keyof RootState;
   const obj = useSelector((state: RootState) => state[key], shallowEqual);
@@ -14,7 +13,8 @@ export const useStoreOnceAfterMount = (
   const dispatch = useDispatch();
 
   const makeAction = (param: number | string) => {
-    return dispatch(action(service)(param));
+    const { type, payload } = action(service, param);
+    return dispatch({ type, payload });
   };
 
   return ({ makeAction, data, loading, error });

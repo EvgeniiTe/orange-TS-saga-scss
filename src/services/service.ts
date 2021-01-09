@@ -22,7 +22,7 @@ const randId = (min: number, max: number | 60003920) => {
   return Math.floor(Math.random() * (right - left)) + left;
 };
 
-const getRandomAcc = async () => {
+const getRandomAcc = async (): Promise<AccData> => {
   let res;
   try {
     res = await getResource(`/user/${randId(1, authorId)}`);
